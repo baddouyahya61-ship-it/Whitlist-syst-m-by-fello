@@ -1,89 +1,241 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Whitelist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitelist System - Galaxy RP</title>
+    <style>
+        /* CSS Style */
+        :root {
+            --primary-color: #00f2ff; /* Cyan Neon */
+            --bg-color: #0a0b10;
+            --card-bg: #12141d;
+            --input-bg: #1a1d29;
+            --text-color: #ffffff;
+        }
 
-<style>
-body {
-  background: #0b0c0e;
-  color: white;
-  font-family: Arial;
-  text-align: center;
-}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle at center, #1a1d29 0%, #0a0b10 100%);
+        }
 
-.container {
-  max-width: 500px;
-  margin: auto;
-  padding: 20px;
-}
+        .container {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 242, 255, 0.1);
+        }
 
-input, textarea {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  background: #111;
-  border: 1px solid #333;
-  color: white;
-}
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
 
-button {
-  padding: 15px;
-  width: 100%;
-  background: orange;
-  border: none;
-  cursor: pointer;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
 
-.success {
-  display: none;
-  color: lightgreen;
-  margin-top: 10px;
-}
-</style>
+        .section-title {
+            color: #ffcc00; /* Yellow bhal sora */
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            grid-column: span 1;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid #2d3142;
+            padding: 12px;
+            color: white;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(0, 242, 255, 0.3);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.4s;
+        }
+
+        button:hover {
+            background: var(--primary-color);
+            color: black;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-  <h1>Whitelist</h1>
+    <div class="container">
+        <h1>Whitelist System</h1>
+        
+        <form id="whitelistForm">
+            <div class="grid">
+                <div>
+                    <div class="section-title">Personal Info (IRL)</div>
+                    <div class="input-group">
+                        <label>Name IRL</label>
+                        <input type="text" id="nameIRL" placeholder="Your real name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Discord Username</label>
+                        <input type="text" id="discordUser" placeholder="example#0000" required>
+                    </div>
+                </div>
 
-  <input id="nomIRL" placeholder="Nom IRL">
-  <input id="discord" placeholder="Discord">
-  <input id="ageIRL" placeholder="Age IRL">
-  <input id="nomRP" placeholder="Nom RP">
-  <input id="ageRP" placeholder="Age RP">
-  <textarea id="experience" placeholder="Experience"></textarea>
+                <div>
+                    <div class="section-title">Character Info (RP)</div>
+                    <div class="input-group">
+                        <label>Name RP</label>
+                        <input type="text" id="nameRP" placeholder="Firstname_Lastname" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Age RP</label>
+                        <input type="number" id="ageRP" placeholder="Character age" required>
+                    </div>
+                </div>
 
-  <button onclick="send()">Send Application</button>
+                <div class="full-width">
+                    <div class="section-title">Experience & Background</div>
+                    <div class="input-group">
+                        <label>Previous Experience</label>
+                        <textarea id="experience" placeholder="Tell us about your RP history..." required></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Character Story</label>
+                        <textarea id="story" placeholder="Write your character background story..." required></textarea>
+                    </div>
+                </div>
+            </div>
 
-  <div class="success" id="msg">✅ Application Sent</div>
-</div>
+            <button type="submit" id="submitBtn">Send Application</button>
+        </form>
+    </div>
 
-<script>
-async function send() {
+    <script>
+        // JavaScript Logic
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1449361776692166666/d1gtPo3Td4IQhuJVCrBEs6Zr62V7AkM2kewCPeXDWUl45iTCXaeN_CFPD1Bm-IXCfMGo";
 
-  const data = {
-    nomIRL: document.getElementById("nomIRL").value,
-    discord: document.getElementById("discord").value,
-    ageIRL: document.getElementById("ageIRL").value,
-    nomRP: document.getElementById("nomRP").value,
-    ageRP: document.getElementById("ageRP").value,
-    experience: document.getElementById("experience").value
-  };
+        document.getElementById('whitelistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Sending...";
+            btn.disabled = true;
 
-  await fetch("https://baddouyahya61-ship-it.github.io/Whitlist-syst-m-by-fello//send", { // بدلها بالرابط ديالك
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
+            // Jam' l-ma'loumat
+            const nameIRL = document.getElementById('nameIRL').value;
+            const discordUser = document.getElementById('discordUser').value;
+            const nameRP = document.getElementById('nameRP').value;
+            const ageRP = document.getElementById('ageRP').value;
+            const experience = document.getElementById('experience').value;
+            const story = document.getElementById('story').value;
 
-  document.getElementById("msg").style.display = "block";
-}
-</script>
+            // Structure dyal l-message (Embed)
+            const payload = {
+                username: "GALACTIC BOT",
+                avatar_url: "https://i.imgur.com/AfFp7pu.png",
+                embeds: [{
+                    title: "🚀 GALAXY ROLEPLAY - NEW APPLICATION",
+                    color: 0x00f2ff,
+                    fields: [
+                        { name: "👤 Name IRL", value: `\`${nameIRL}\``, inline: true },
+                        { name: "🆔 Discord", value: `\`${discordUser}\``, inline: true },
+                        { name: "🎂 Age IRL", value: `\`Secret\``, inline: true }, // Khliha default fhal sora
+                        { name: "🎭 Name RP", value: `\`${nameRP}\``, inline: true },
+                        { name: "💎 Age RP", value: `\`${ageRP}\``, inline: true },
+                        { name: "📜 Experience", value: `\`\`\`${experience}\`\`\`` },
+                        { name: "📖 Character Story", value: `\`\`\`${story}\`\`\`` },
+                        { name: "🛠️ ADMIN ACTIONS", value: "✅ ACCEPT & GO VOCAL\n❌ REJECT APPLICATION" }
+                    ],
+                    footer: { text: "Galactic HQ Transmission System" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
 
+            // Sifet l-data
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if(response.ok) {
+                    alert("✅ Your application has been sent successfully!");
+                    document.getElementById('whitelistForm').reset();
+                } else {
+                    alert("❌ Error: Webhook not working.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("❌ Connection error!");
+            })
+            .finally(() => {
+                btn.innerText = "Send Application";
+                btn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
