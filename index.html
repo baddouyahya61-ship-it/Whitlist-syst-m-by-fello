@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Whitelist Systeme</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap');
+
+  /* General Reset and Body Styling */
+  body {
+    margin: 0;
+    background-color: #0b0c0e;
+    font-family: 'Roboto', sans-serif;
+    color: #ccc;
+  }
+
+  /* Container for form */
+  .container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #121416;
+    border: 1px solid #222;
+    padding: 30px 40px;
+    box-shadow: 0 0 15px #00d2ff9a;
+  }
+
+  /* Main Title */
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-weight: 900;
+    color: #00d2ff;
+    font-size: 36px;
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+  }
+
+  /* Subtitle */
+  .subtitle {
+    color: #49636f;
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* Sections */
+  .form-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    gap: 20px;
+  }
+
+  /* Form Group */
+  .form-group {
+    flex: 1;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-weight: 900;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .section-personal {
+    color: #ebbb2c;
+  }
+  .section-character {
+    color: #00a4ff;
+  }
+  .section-experience {
+    color: #866fe7;
+  }
+
+  /* Labels */
+  label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #999;
+  }
+
+  /* Inputs */
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    background-color: #141518;
+    border: 1px solid #222;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+  }
+
+  input[type="text"]::placeholder,
+  textarea::placeholder {
+    color: #444;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #00d2ff;
+  }
+
+  /* Horizontal line */
+  hr {
+    border: 0;
+    border-top: 1px solid #222;
+    margin: 15px 0 30px;
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>WHITELIST SYSTEME</h1>
+    <p class="subtitle">SYSTEME CREATED BY SPENDOZA</p>
+
+    <div class="form-section">
+      <div class="form-group">
+        <h2 class="section-title section-personal">PERSONNAL INFO (IRL)</h2>
+        <label for="name-irl">Name IRL</label>
+        <input type="text" id="name-irl" placeholder="Your real name" />
+
+        <label for="discord">Discord Username</label>
+        <input type="text" id="discord" placeholder="example#0000" />
+
+        <label for="age-irl">Age IRL</label>
+        <input type="number" id="age-irl" placeholder="Your real age" />
+      </div>
+
+      <div class="form-group">
+        <h2 class="section-title section-character">CHARACTER INFO (RP)</h2>
+        <label for="name-rp">Name RP</label>
+        <input type="text" id="name-rp" placeholder="Firstname_Lastname" />
+
+        <label for="age-rp">Age RP</label>
+        <input type="number" id="age-rp" placeholder="Character age" />
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group">
+      <h2 class="section-title section-experience">EXPERIENCE & BACKGROUND</h2>
+      <label for="experience">Describe your experience and background</label>
+      <textarea id="experience" rows="6" placeholder="Your text here..."></textarea>
+    </div>
+  </div>
+
+</body>
+</html>
