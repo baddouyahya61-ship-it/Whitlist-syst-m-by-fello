@@ -193,22 +193,21 @@
 
             // Structure dyal l-message (Embed)
             const payload = {
-                username: "GALACTIC BOT",
-                avatar_url: "https://i.imgur.com/AfFp7pu.png",
+                username: "Whitlist Bot by fello",
                 embeds: [{
-                    title: "🚀 GALAXY ROLEPLAY - NEW APPLICATION",
+                    title: "Fello",
                     color: 0x00f2ff,
                     fields: [
-                        { name: "👤 Name IRL", value: `\`${nameIRL}\``, inline: true },
-                        { name: "🆔 Discord", value: `\`${discordUser}\``, inline: true },
-                        { name: "🎂 Age IRL", value: `\`Secret\``, inline: true }, // Khliha default fhal sora
-                        { name: "🎭 Name RP", value: `\`${nameRP}\``, inline: true },
-                        { name: "💎 Age RP", value: `\`${ageRP}\``, inline: true },
-                        { name: "📜 Experience", value: `\`\`\`${experience}\`\`\`` },
-                        { name: "📖 Character Story", value: `\`\`\`${story}\`\`\`` },
-                        { name: "🛠️ ADMIN ACTIONS", value: "✅ ACCEPT & GO VOCAL\n❌ REJECT APPLICATION" }
+                        { name: " Name IRL", value: `\`${nameIRL}\``, inline: true },
+                        { name: "user Discord", value: `\`${discordUser}\``, inline: true },
+                        { name: " Age IRL", value: `\`Secret\``, inline: true }, // Khliha default fhal sora
+                        { name: " Name RP", value: `\`${nameRP}\``, inline: true },
+                        { name: " Age RP", value: `\`${ageRP}\``, inline: true },
+                        { name: " Experience", value: `\`\`\`${experience}\`\`\`` },
+                        { name: " Character Story", value: `\`\`\`${story}\`\`\`` },
+                
                     ],
-                    footer: { text: "Galactic HQ Transmission System" },
+                    footer: { text: "Developed By Fello" },
                     timestamp: new Date().toISOString()
                 }]
             };
@@ -221,7 +220,7 @@
             })
             .then(response => {
                 if(response.ok) {
-                    alert("✅ Your application has been sent successfully!");
+                    alert(" Your application has been sent successfully!");
                     document.getElementById('whitelistForm').reset();
                 } else {
                     alert("❌ Error: Webhook not working.");
