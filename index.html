@@ -263,8 +263,13 @@
   </div>
 
 <script>
-// === VOTRE WEBHOOK DISCORD INTÉGRÉ ✅ ===
+// === VOTRE WEBHOOK DISCORD ✅ ===
 const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1449361776692166666/d1gtPo3Td4IQhuJVCrBEs6Zr62V7AkM2kewCPeXDWUl45iTCXaeN_CFPD1Bm-IXCfMGo';
+
+// ID DU RÔLE AVEC PERMISSION (SEUL CE RÔLE PEUT UTILISER LES BOUTONS)
+const PERMISSION_ROLE_ID = '1402687620219404348';
+
+let applicationId = 0; // Compteur unique pour chaque candidature
 
 async function sendApplication() {
   const button = document.querySelector('.send-button');
@@ -278,7 +283,8 @@ async function sendApplication() {
     nameRP: document.getElementById('name-rp').value,
     ageRP: document.getElementById('age-rp').value,
     experience: document.getElementById('experience').value,
-    timestamp: new Date().toLocaleString('fr-FR')
+    timestamp: new Date().toLocaleString('fr-FR'),
+    appId: ++applicationId // ID unique pour chaque candidature
   };
 
   // Vérifier que tous les champs sont remplis
@@ -294,7 +300,7 @@ async function sendApplication() {
   button.disabled = true;
 
   try {
-    // Envoyer vers Discord
+    // Envoyer vers Discord avec BOUTONS Accept/Refuse
     const response = await fetch(DISCORD_WEBHOOK_URL, {
       method: 'POST',
       headers: {
@@ -304,28 +310,50 @@ async function sendApplication() {
         username: '🐉 Whitelist Dragon Bot',
         avatar_url: 'https://cdn.discordapp.com/emojis/123456789.png',
         embeds: [{
-          title: '🆕 NOUVELLE CANDIDATURE WHITELIST',
+          title: `🆕 CANDIDATURE #${formData.appId}`,
+          description: `**Discord:** \`${formData.discord}\``,
           color: 0xFF6600,
           fields: [
-            { name: '👤 **Nom IRL**', value: `\`${formData.nameIRL}\``, inline: true },
-            { name: '💬 **Discord**', value: `\`${formData.discord}\``, inline: true },
-            { name: '📅 **Âge IRL**', value: `\`${formData.ageIRL} ans\``, inline: true },
-            { name: '🎭 **Nom RP**', value: `\`${formData.nameRP}\``, inline: true },
-            { name: '🎭 **Âge RP**', value: `\`${formData.ageRP} ans\``, inline: true },
-            { name: '📝 **Expérience**', value: `\`\`\`${formData.experience.substring(0, 1000)}\`\`\``, inline: false }
+            { name: '👤 Nom IRL', value: `\`${formData.nameIRL}\``, inline: true },
+            { name: '📅 Âge IRL', value: `\`${formData.ageIRL} ans\``, inline: true },
+            { name: '🎭 Nom RP', value: `\`${formData.nameRP}\``, inline: true },
+            { name: '🎭 Âge RP', value: `\`${formData.ageRP} ans\``, inline: true },
+            { name: '📝 Expérience', value: `\`\`\`${formData.experience.substring(0, 900)}\`\`\``, inline: false }
           ],
           footer: {
-            text: `📅 ${formData.timestamp}`
+            text: `📅 ${formData.timestamp} | Cliquez Accept/Refuse`
           },
           thumbnail: {
             url: 'https://cdn.discordapp.com/emojis/123456789.png'
           }
-        }]
+        }],
+        components: [
+          {
+            type: 1, // Action Row
+            components: [
+              {
+                type: 2, // Button
+                style: 3, // Green = Accept
+                label: '✅ ACCEPT',
+                custom_id: `accept_${formData.appId}_${formData.discord}`,
+                emoji: { name: '✅' }
+              },
+              {
+                type: 2, // Button
+                style: 4, // Red = Refuse
+                label: '❌ REFUSE',
+                custom_id: `refuse_${formData.appId}_${formData.discord}`,
+                emoji: { name: '❌' }
+              }
+            ]
+          }
+        ]
       })
     });
 
     if (response.ok) {
       // Afficher le message de succès
+      successMsg.innerHTML = `✅ APPLICATION #${formData.appId} ENVOYÉE !<br><small>Les boutons Accept/Refuse sont dans Discord</small>`;
       successMsg.style.display = 'block';
       button.style.display = 'none';
       
