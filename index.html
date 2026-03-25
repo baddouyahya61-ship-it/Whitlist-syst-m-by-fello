@@ -7,30 +7,22 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
 
-  /* Fond avec texture sombre style écailles dragon */
   body {
     margin: 0;
     background: radial-gradient(circle at center, #1a0c00 0%, #000000 90%);
     font-family: 'Unica One', cursive, sans-serif;
     color: #f0d8a8;
-    -webkit-font-smoothing: antialiased;
   }
 
-  /* Conteneur principal */
   .container {
     max-width: 900px;
     margin: 50px auto;
     background: linear-gradient(145deg, #350d00, #5a1f00);
     border-radius: 20px;
-    box-shadow:
-      0 0 20px 6px rgba(243, 115, 0, 0.6),
-      inset 0 0 25px 2px #ff7b00;
+    box-shadow: 0 0 20px 6px rgba(243, 115, 0, 0.6), inset 0 0 25px 2px #ff7b00;
     padding: 40px 50px 60px;
-    position: relative;
-    overflow: hidden;
   }
 
-  /* Logo dragon */
   .logo-dragon {
     display: block;
     margin: 0 auto 25px;
@@ -47,15 +39,11 @@
     100% { filter: drop-shadow(0 0 8px #ff7700); }
   }
 
-  /* Titre principal */
   h1 {
     margin: 0 0 10px;
     text-align: center;
     color: #ffcc33;
-    text-shadow:
-      0 0 8px #e67a00,
-      0 0 20px #ff5700,
-      0 0 30px #ff2200;
+    text-shadow: 0 0 8px #e67a00, 0 0 20px #ff5700, 0 0 30px #ff2200;
     font-size: 3rem;
     letter-spacing: 4px;
     font-weight: 900;
@@ -70,7 +58,6 @@
     text-shadow: 0 0 6px #ff7700;
   }
 
-  /* Sections du formulaire */
   .form-section {
     display: flex;
     justify-content: space-between;
@@ -88,7 +75,6 @@
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    user-select: none;
   }
   .section-personal { color: #ff6e00; text-shadow: 0 0 6px #ffb347; }
   .section-character { color: #ff3300; text-shadow: 0 0 7px #ff5a3c; }
@@ -99,12 +85,9 @@
     font-size: 14px;
     margin-bottom: 6px;
     color: #f9cca2;
-    text-shadow: 1px 1px 2px #400d00;
   }
 
-  input[type="text"],
-  input[type="number"],
-  textarea {
+  input[type="text"], input[type="number"], textarea {
     width: 100%;
     background: #2e0e00;
     border: 2px solid #6a2e00;
@@ -113,27 +96,19 @@
     padding: 12px 15px;
     font-size: 16px;
     box-shadow: inset 2px 2px 10px #5a2000;
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     resize: vertical;
-    font-family: 'Unica One', cursive, sans-serif;
-    letter-spacing: 0.03em;
+    font-family: 'Unica One', cursive;
   }
 
-  input[type="text"]::placeholder,
-  input[type="number"]::placeholder,
-  textarea::placeholder {
-    color: #a06020;
-    font-style: italic;
-  }
-
-  input[type="text"]:focus,
-  input[type="number"]:focus,
-  textarea:focus {
+  input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
     outline: none;
     border-color: #ff7000;
-    box-shadow: 0 0 14px #ff7f00, inset 2px 2px 15px #ff8b00;
-    background: #3a1b00;
-    color: #fff0cc;
+    box-shadow: 0 0 14px #ff7f00;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: #a06020;
   }
 
   hr {
@@ -143,57 +118,42 @@
     box-shadow: 0 0 10px #ff6600;
   }
 
-  /* BOUTON SEND */
   .send-button {
     width: 100%;
-    background: linear-gradient(45deg, #ff4400, #ff7700, #ffaa00);
+    background: linear-gradient(45deg, #ff4400, #ff7700);
     border: none;
     border-radius: 12px;
     color: #fff;
-    padding: 16px 30px;
-    font-size: 20px;
+    padding: 18px;
+    font-size: 22px;
     font-weight: 900;
     font-family: 'Unica One', cursive;
     text-transform: uppercase;
-    letter-spacing: 2px;
     cursor: pointer;
-    box-shadow:
-      0 0 20px rgba(255, 102, 0, 0.8),
-      inset 0 0 10px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 25px rgba(255, 102, 0, 0.8);
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
   }
 
   .send-button:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 8px 25px rgba(255, 102, 0, 0.9),
-      inset 0 0 15px rgba(255, 255, 255, 0.3);
-  }
-
-  .send-button:active {
-    transform: translateY(0);
+    transform: scale(1.02);
+    box-shadow: 0 0 35px rgba(255, 102, 0, 1);
   }
 
   .send-button.sending {
-    background: linear-gradient(45deg, #666, #888);
+    background: #666;
     cursor: not-allowed;
   }
 
-  /* Message de confirmation */
   .success-message {
     display: none;
     text-align: center;
     background: linear-gradient(45deg, #00ff44, #44ff88);
     color: #000;
-    padding: 20px;
+    padding: 25px;
     border-radius: 12px;
     margin-top: 20px;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 900;
-    text-shadow: none;
-    box-shadow: 0 0 20px rgba(0, 255, 68, 0.6);
     animation: pulse 1s infinite;
   }
 
@@ -202,174 +162,144 @@
     50% { transform: scale(1.05); }
   }
 
-  /* Responsive */
   @media (max-width: 720px) {
     .form-section { flex-direction: column; }
-    .container { padding: 30px 20px 40px; }
   }
 </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- Logo Dragon -->
-    <svg class="logo-dragon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <path d="M32 2L27 22H15l15 20-10 10 5-20 10-10H48z"/>
-    </svg>
+<div class="container">
+  <svg class="logo-dragon" viewBox="0 0 64 64">
+    <path d="M32 2L27 22H15l15 20-10 10 5-20 10-10H48z"/>
+  </svg>
 
-    <h1>WHITELIST SYSTEME</h1>
-    <p class="subtitle">SYSTEME CREATED BY SPENDOZA</p>
+  <h1>WHITELIST SYSTEME</h1>
+  <p class="subtitle">SYSTEME CREATED BY SPENDOZA</p>
 
-    <div class="form-section">
-      <div class="form-group">
-        <h2 class="section-title section-personal">PERSONNAL INFO (IRL)</h2>
-        <label for="name-irl">Name IRL</label>
-        <input type="text" id="name-irl" placeholder="Your real name" required />
-
-        <label for="discord">Discord Username</label>
-        <input type="text" id="discord" placeholder="example#0000" required />
-
-        <label for="age-irl">Age IRL</label>
-        <input type="number" id="age-irl" placeholder="Your real age" min="13" required />
-      </div>
-
-      <div class="form-group">
-        <h2 class="section-title section-character">CHARACTER INFO (RP)</h2>
-        <label for="name-rp">Name RP</label>
-        <input type="text" id="name-rp" placeholder="Firstname_Lastname" required />
-
-        <label for="age-rp">Age RP</label>
-        <input type="number" id="age-rp" placeholder="Character age" min="16" required />
-      </div>
+  <div class="form-section">
+    <div class="form-group">
+      <h2 class="section-title section-personal">PERSONNAL INFO (IRL)</h2>
+      <label>Nom IRL</label>
+      <input type="text" id="name-irl" placeholder="Votre nom réel" required>
+      
+      <label>Discord</label>
+      <input type="text" id="discord" placeholder="user#1234" required>
+      
+      <label>Âge IRL</label>
+      <input type="number" id="age-irl" placeholder="Votre âge" min="13" required>
     </div>
-
-    <hr />
 
     <div class="form-group">
-      <h2 class="section-title section-experience">EXPERIENCE & BACKGROUND</h2>
-      <label for="experience">Describe your experience and background</label>
-      <textarea id="experience" rows="6" placeholder="Your text here..." required></textarea>
-    </div>
-
-    <!-- BOUTON SEND -->
-    <button class="send-button" onclick="sendApplication()">
-      🔥 SEND APPLICATION 🔥
-    </button>
-
-    <!-- Message de confirmation -->
-    <div class="success-message" id="successMessage">
-      ✅ APPLICATION SENT ✅
+      <h2 class="section-title section-character">CHARACTER INFO (RP)</h2>
+      <label>Nom RP</label>
+      <input type="text" id="name-rp" placeholder="Prénom_Nom" required>
+      
+      <label>Âge RP</label>
+      <input type="number" id="age-rp" placeholder="Âge du personnage" min="16" required>
     </div>
   </div>
 
+  <hr />
+
+  <div class="form-group">
+    <h2 class="section-title section-experience">EXPERIENCE & BACKGROUND</h2>
+    <label>Describe your experience and background</label>
+    <textarea id="experience" rows="6" placeholder="Votre expérience..." required></textarea>
+  </div>
+
+  <button class="send-button" onclick="sendApplication()">
+    🔥 ENVOYER LA CANDIDATURE 🔥
+  </button>
+
+  <div class="success-message" id="successMessage">
+    ✅ CANDIDATURE ENVOYÉE !<br>
+    <small>Les boutons Accept/Refuse sont dans Discord</small>
+  </div>
+</div>
+
 <script>
-// === VOTRE WEBHOOK DISCORD ✅ ===
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1449361776692166666/d1gtPo3Td4IQhuJVCrBEs6Zr62V7AkM2kewCPeXDWUl45iTCXaeN_CFPD1Bm-IXCfMGo';
-
-// ID DU RÔLE AVEC PERMISSION (SEUL CE RÔLE PEUT UTILISER LES BOUTONS)
-const PERMISSION_ROLE_ID = '1402687620219404348';
-
-let applicationId = 0; // Compteur unique pour chaque candidature
+// === WEBHOOK DISCORD ===
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1449361776692166666/d1gtPo3Td4IQhuJVCrBEs6Zr62V7AkM2kewCPeXDWUl45iTCXaeN_CFPD1Bm-IXCfMGo';
+const ROLE_ID = '1402687620219404348';
+let appCounter = 0;
 
 async function sendApplication() {
-  const button = document.querySelector('.send-button');
-  const successMsg = document.getElementById('successMessage');
-
-  // Récupérer les données du formulaire
-  const formData = {
+  const btn = document.querySelector('.send-button');
+  const success = document.getElementById('successMessage');
+  
+  const data = {
     nameIRL: document.getElementById('name-irl').value,
     discord: document.getElementById('discord').value,
     ageIRL: document.getElementById('age-irl').value,
     nameRP: document.getElementById('name-rp').value,
     ageRP: document.getElementById('age-rp').value,
     experience: document.getElementById('experience').value,
-    timestamp: new Date().toLocaleString('fr-FR'),
-    appId: ++applicationId // ID unique pour chaque candidature
+    id: ++appCounter,
+    timestamp: new Date().toLocaleString('fr-FR')
   };
 
-  // Vérifier que tous les champs sont remplis
-  if (!formData.nameIRL || !formData.discord || !formData.ageIRL || 
-      !formData.nameRP || !formData.ageRP || !formData.experience) {
-    alert('⚠️ Remplissez tous les champs avant d\'envoyer !');
+  if (!data.nameIRL || !data.discord || !data.experience) {
+    alert('⚠️ Remplissez tous les champs !');
     return;
   }
 
-  // Désactiver le bouton
-  button.textContent = '⏳ ENVOI EN COURS...';
-  button.classList.add('sending');
-  button.disabled = true;
+  btn.textContent = '⏳ ENVOI...';
+  btn.classList.add('sending');
+  btn.disabled = true;
 
   try {
-    // Envoyer vers Discord avec BOUTONS Accept/Refuse
-    const response = await fetch(DISCORD_WEBHOOK_URL, {
+    const response = await fetch(WEBHOOK_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: '🐉 Whitelist Dragon Bot',
-        avatar_url: 'https://cdn.discordapp.com/emojis/123456789.png',
+        username: '🐉 Whitelist Bot',
         embeds: [{
-          title: `🆕 CANDIDATURE #${formData.appId}`,
-          description: `**Discord:** \`${formData.discord}\``,
-          color: 0xFF6600,
+          title: `🆕 Candidature #${data.id}`,
+          description: `**Discord:** \`${data.discord}\``,
+          color: 16711680,
           fields: [
-            { name: '👤 Nom IRL', value: `\`${formData.nameIRL}\``, inline: true },
-            { name: '📅 Âge IRL', value: `\`${formData.ageIRL} ans\``, inline: true },
-            { name: '🎭 Nom RP', value: `\`${formData.nameRP}\``, inline: true },
-            { name: '🎭 Âge RP', value: `\`${formData.ageRP} ans\``, inline: true },
-            { name: '📝 Expérience', value: `\`\`\`${formData.experience.substring(0, 900)}\`\`\``, inline: false }
+            { name: '👤 Nom IRL', value: `\`${data.nameIRL}\``, inline: true },
+            { name: '📅 Âge IRL', value: `\`${data.ageIRL}\``, inline: true },
+            { name: '🎭 Nom RP', value: `\`${data.nameRP}\``, inline: true },
+            { name: '🎭 Âge RP', value: `\`${data.ageRP}\``, inline: true },
+            { name: '📝 Expérience', value: `\`\`\`${data.experience.slice(0, 900)}\`\`\``, inline: false }
           ],
-          footer: {
-            text: `📅 ${formData.timestamp} | Cliquez Accept/Refuse`
-          },
-          thumbnail: {
-            url: 'https://cdn.discordapp.com/emojis/123456789.png'
-          }
+          footer: { text: data.timestamp }
         }],
-        components: [
-          {
-            type: 1, // Action Row
-            components: [
-              {
-                type: 2, // Button
-                style: 3, // Green = Accept
-                label: '✅ ACCEPT',
-                custom_id: `accept_${formData.appId}_${formData.discord}`,
-                emoji: { name: '✅' }
-              },
-              {
-                type: 2, // Button
-                style: 4, // Red = Refuse
-                label: '❌ REFUSE',
-                custom_id: `refuse_${formData.appId}_${formData.discord}`,
-                emoji: { name: '❌' }
-              }
-            ]
-          }
-        ]
+        components: [{
+          type: 1,
+          components: [
+            {
+              type: 2,
+              style: 3, // VERT ✅
+              label: 'ACCEPT',
+              custom_id: `accept_${data.id}_${data.discord}`,
+              emoji: '✅'
+            },
+            {
+              type: 2,
+              style: 4, // ROUGE ❌
+              label: 'REFUSE',
+              custom_id: `refuse_${data.id}_${data.discord}`,
+              emoji: '❌'
+            }
+          ]
+        }]
       })
     });
 
     if (response.ok) {
-      // Afficher le message de succès
-      successMsg.innerHTML = `✅ APPLICATION #${formData.appId} ENVOYÉE !<br><small>Les boutons Accept/Refuse sont dans Discord</small>`;
-      successMsg.style.display = 'block';
-      button.style.display = 'none';
-      
-      // Réinitialiser le formulaire
-      document.querySelectorAll('input, textarea').forEach(input => input.value = '');
-    } else {
-      throw new Error('Erreur webhook Discord');
+      success.style.display = 'block';
+      btn.style.display = 'none';
+      document.querySelectorAll('input, textarea').forEach(el => el.value = '');
     }
-  } catch (error) {
-    alert('❌ Erreur d\'envoi. Réessayez !');
-    console.error('Error:', error);
+  } catch (e) {
+    alert('❌ Erreur !');
   } finally {
-    // Réactiver le bouton
-    button.textContent = '🔥 SEND APPLICATION 🔥';
-    button.classList.remove('sending');
-    button.disabled = false;
+    btn.textContent = '🔥 ENVOYER LA CANDIDATURE 🔥';
+    btn.classList.remove('sending');
+    btn.disabled = false;
   }
 }
 </script>
